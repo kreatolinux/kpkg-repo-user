@@ -1,0 +1,49 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  schedule:
+    - cron: '0 0 * * WED'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: main
+        run: |
+          rm -rf src
+          git clone https://github.com/kreatolinux/src
+          cd src
+          make deps
+          make chkupd
+          mv src/chkupd/jsontomd.sh /tmp/
+          mv out/chkupd /tmp/
+          cd ..
+          rm -rf src
+          cd /tmp/
+          ./chkupd checkAll --jsonPath=/tmp/chkupd.json --repo="$GITHUB_WORKSPACE"
+          bash jsontomd.sh /tmp/chkupd.json > /tmp/chkupd.md
+          rm -rf chkupd jsontomd.sh
+          
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5.0.2
+        with:
+          commit-message: "[CI] Automated update by chkupd"
+          body-path: /tmp/chkupd.md
+          
+      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: json
+          path: /tmp/chkupd.json
