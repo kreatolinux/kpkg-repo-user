@@ -6,11 +6,10 @@
 This repository contains packages that are maintained and packaged by Kreato Linux users. Packages on this repository are deemed "off-limits" for the main repository, so they are stored here.
 
 > **Warning**
-> Packages inside this repository is not maintained and/or made by Kreato Linux staff. Proceed at your own risk.
-> Kreato Linux developers doesn't guarantee stability and/or compatibility with any of the packages available. 
+> Packages inside this repository is not maintained and/or made by Kreato Linux staff. Proceed at your own risk. Kreato Linux developers doesn't guarantee stability and/or compatibility with any of the packages available. 
 
 # Usage
-This repository is disabled by default. You can add it to `/etc/kpkg/kpkg.conf` or clone it by hand;\
+This repository is disabled by default. You can add it to `/etc/kpkg/kpkg.conf` or clone it by hand;
 ```
 mkdir -p /etc/kpkg/repos
 git clone https://github.com/kreatolinux/kpkg-repo-user.git --depth=1 /etc/kpkg/repos/user
