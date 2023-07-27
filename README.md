@@ -5,7 +5,7 @@
 # Kreato Linux user repository
 This repository contains packages that are maintained and packaged by Kreato Linux users. Packages on this repository are deemed "off-limits" for the main repository, so they are stored here.
 
-Packages inside this repository is not maintained and/or made by Kreato Linux staff. Proceed at your own risk. Kreato Linux developers doesn't guarantee stability and/or compatibility with any of the packages available. 
+Packages inside this repository is not maintained and/or made by Kreato Linux staff. Proceed at your own risk. Kreato Linux developers don't guarantee stability and/or compatibility with any of the packages available. 
 
 # Usage
 This repository is disabled by default. You can add it to `/etc/kpkg/kpkg.conf` or clone it by hand;
